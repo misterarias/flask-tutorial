@@ -4,33 +4,39 @@ import './index.css';
 
 // ========================
 class Square extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      value: null
-    }
-  }
-
-  toggle() {
-    if (this.state.value != null) {
-      this.setState({value: null});
-    } else {
-      this.setState({value: 'X'});
-    }
-  }
-
   render() {
     return (
-      <button className="square" onClick={() => this.toggle()}>
-        {this.state.value}
+      <button className="square" onClick={() =>this.props.onClick()}>
+        {this.props.value}
       </button>
     );
   }
 }
 
 class Board extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      squares: Array(9).fill(null)
+    }
+  }
+
+  handleClick(index) {
+    // Using 'slice' creates a copy of the array!
+    const squares = this.state.squares.slice();
+    squares[index] = 'x';
+
+    this.setState( {squares: squares} );
+  }
+
   renderSquare(i) {
-    return <Square value={i} />;
+    return(
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
