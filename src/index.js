@@ -24,11 +24,11 @@ class Board extends React.Component {
   handleClick(index) {
     // Using 'slice' creates a copy of the array!
     const squares = this.state.squares.slice();
-    if (this.calculateWinner(squares)) {
+    if (squares[index] || this.calculateWinner(squares) ) {
       return;
     }
 
-    squares[index] = this.getPlayerIcon();
+    squares[index] = this.getNextPlayerIcon();
 
     this.setState( {
       squares: squares,
@@ -66,6 +66,10 @@ class Board extends React.Component {
   }
 
   getPlayerIcon() {
+    return !this.state.xIsNext ? 'X' : 'O' ;
+  }
+
+  getNextPlayerIcon() {
     return this.state.xIsNext ? 'X' : 'O' ;
   }
 
@@ -75,7 +79,7 @@ class Board extends React.Component {
     if (winner) {
       status = 'WINNER IS: ' + this.getPlayerIcon();
     } else {
-      status = 'Next player: ' + this.getPlayerIcon();
+      status = 'Next player: ' + this.getNextPlayerIcon();
     }
 
     return (
