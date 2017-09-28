@@ -54,33 +54,37 @@ class Game extends React.Component {
           squares: Array(9).fill(null)
         }
       ],
-      xIsNext: true
+      stepNumber: 0
     }
   }
 
+  xIsNext() {
+    return this.state.stepNumber % 2 === 0 ;
+  }
+
   getPlayerIcon() {
-    return this.state.xIsNext ? 'O' : 'X'  ;
+    return this.xIsNext() ? 'X' : 'O'  ;
   }
 
   getNextPlayerIcon() {
-    return this.state.xIsNext ? 'X' : 'O' ;
+    return ! this.xIsNext() ? 'X' : 'O'  ;
   }
 
   handleClick(index) {
-    const history = this.state.history ;
+    const history = this.state.history.slice(0, this.state.stepNumber + 1) ;
     const current = history[history.length - 1] ;
     const squares = current.squares.slice() ;
     if (this.calculateWinner(squares) || squares[index] ) {
       return;
     }
 
-    squares[index] = this.getNextPlayerIcon();
+    squares[index] = this.getPlayerIcon();
 
     this.setState( {
       history: history.concat([{
         squares: squares
       }]),
-      xIsNext: !this.state.xIsNext
+      stepNumber: history.length
     });
   }
 
@@ -104,14 +108,16 @@ class Game extends React.Component {
     return null;
   }
 
-  jumpTo(move_id) {
-
+  jumpTo(newStepNumber) {
+    this.setState({
+      stepNumber: newStepNumber
+    });
   }
 
   render() {
 
-    const history = this.state.history ;
-    const current = history[history.length - 1] ;
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
     const winner = this.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -127,9 +133,9 @@ class Game extends React.Component {
 
     let status;
     if (winner) {
-      status = <p className='red'>{this.getPlayerIcon()}  Wins!</p> ;
+      status = <p className='red'>{this.getNextPlayerIcon()}  Wins!</p> ;
     } else {
-      status = <p className='blue'>Next turn:  {this.getNextPlayerIcon()} </p> ;
+      status = <p className='blue'>Next turn: {this.getPlayerIcon()} </p> ;
     }
 
     return (

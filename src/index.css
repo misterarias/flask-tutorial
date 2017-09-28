@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background: white ;
 }
 
 ol, ul {
@@ -30,6 +31,10 @@ ol, ul {
   padding: 0;
   text-align: center;
   width: 100px;
+}
+
+div.game-board {
+  border: 2px black solid;
 }
 
 .square:focus {
