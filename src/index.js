@@ -22,40 +22,64 @@ class Board extends React.Component {
   }
 
   render() {
+    let rowNumber = parseInt(this.props.rowNumber, 10);
+    let array = Array(rowNumber).fill(null);
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+      <div>{
+        array.map( (item, row) => {
+          return (
+            <div className="board-row">{
+              array.map( (item, col) => {
+                return (this.renderSquare(col + row*rowNumber));
+              })
+            }
+          </div>
+          )
+        })
+      }
+    </div>
     );
   }
 }
 
 class Game extends React.Component {
 
-  constructor() {
+  constructor(props) {
     super();
+
+    let lines = []
+    const rowNumber = parseInt(props.rowNumber, 10);
+
+    // Horizontal / Vertical  rows
+    for (let i=0; i<rowNumber; i++) {
+      let h_row = [], v_row=[] ;
+      for (let j=0; j<rowNumber; j++) {
+        h_row = h_row.concat( j + i*rowNumber );
+        v_row = v_row.concat( i + j*rowNumber );
+      }
+      lines = lines.concat([h_row]);
+      lines = lines.concat([v_row]);
+    }
+
+    // Diagonals
+    let diag1 = [0], diag2=[rowNumber - 1] ;
+    for (let i=0; i<(rowNumber - 1); i++) {
+      diag1 = diag1.concat(diag1[i] + rowNumber + 1);
+      diag2 = diag2.concat(diag2[i] + rowNumber - 1);
+    }
+    lines = lines.concat([diag1]).concat([diag2]);
+
     this.state = {
       history: [
         {
-          squares: Array(9).fill(null)
+          squares: Array(props.rowNumber**2).fill(null)
         }
       ],
-      stepNumber: 0
+      stepNumber: 0,
+      rowNumber: rowNumber,
+      winningLines: lines
     }
+
   }
 
   xIsNext() {
@@ -74,7 +98,7 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1) ;
     const current = history[history.length - 1] ;
     const squares = current.squares.slice() ;
-    if (this.calculateWinner(squares) || squares[index] ) {
+    if (this.calculateWinner(squares) || squares[index] !== null ) {
       return;
     }
 
@@ -88,24 +112,28 @@ class Game extends React.Component {
     });
   }
 
+  // Given a row representing board state, see if there is a winner
   calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
+    const lines = this.state.winningLines ;
     for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+      const candidate = lines[i];
+      const first = squares[candidate[0]]
+      if (first === null) {
+        continue;
+      }
+
+      let winner = true;;
+      for (let j=1; j<candidate.length; j++) {
+        if (first !== squares[candidate[j]]) {
+          winner = false;
+          break;
+        }
+      }
+      if (winner) {
+        return true
       }
     }
-    return null;
+    return false;
   }
 
   jumpTo(newStepNumber) {
@@ -144,6 +172,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={(index) => this.handleClick(index)}
+            rowNumber={this.state.rowNumber}
           />
         </div>
         <div className="game-info">
@@ -162,6 +191,8 @@ class Game extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <Game
+    rowNumber="5"
+  />,
   document.getElementById('root')
 );
