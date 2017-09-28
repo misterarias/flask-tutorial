@@ -104,33 +104,48 @@ class Game extends React.Component {
     return null;
   }
 
+  jumpTo(move_id) {
+
+  }
+
   render() {
 
     const history = this.state.history ;
     const current = history[history.length - 1] ;
     const winner = this.calculateWinner(current.squares);
+
+    const moves = history.map((step, move) => {
+      const desc = move ?
+        'Move #' + move :
+        'Game start';
+      return (
+        <li key={move}>
+          <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+        </li>
+      );
+    });
+
     let status;
     if (winner) {
-      status = 'WINNER IS: ' + this.getPlayerIcon();
+      status = <p className='red'>{this.getPlayerIcon()}  Wins!</p> ;
     } else {
-      status = 'Next player: ' + this.getNextPlayerIcon();
+      status = <p className='blue'>Next turn:  {this.getNextPlayerIcon()} </p> ;
     }
 
     return (
       <div className="game">
         <div className="game-board">
-          <div className="status">{status}</div>
           <Board
             squares={current.squares}
             onClick={(index) => this.handleClick(index)}
           />
         </div>
         <div className="game-info">
-          <div>
-            {/* status */}
+          <div className="status">
+            {status}
           </div>
           <ol>
-            {/* TODO */}
+            {moves}
           </ol>
         </div>
       </div>
