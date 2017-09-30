@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="search-bar"
+>
+  <input
+    defaultValue="Search me"
+    name="searchbar"
+    type="text"
+  />
+</div>
+`;

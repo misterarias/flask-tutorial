@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react';
-import SearchResults from './SearchResults';
+import SearchBar from './SearchBar';
 
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -11,20 +11,18 @@ import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <SearchResults
-    />
+    <SearchBar />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-test('SearchResults starts with an empty list', () => {
+test('searchBar starts with the default text', () => {
   // Render a checkbox with label in the document
-  const searchResults = shallow(
-    <SearchResults />
+  const searchBar = shallow(
+    <SearchBar />
   );
 
-  const results = searchResults.find('#results');
-  expect(results.length).toBe(1) ;
-  expect(results.find('li').length).toBe(0) ;
+  const searchBarForm = searchBar.find('input');
+  expect(searchBarForm.length).toBe(1) ;
 });
