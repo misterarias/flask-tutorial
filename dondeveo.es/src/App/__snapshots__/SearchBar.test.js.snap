@@ -2,12 +2,31 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="search-bar"
+  className="container"
 >
-  <input
-    defaultValue="Search me"
-    name="searchbar"
-    type="text"
-  />
+  <header
+    className="header"
+  >
+    <h1
+      className="title"
+    >
+      ¿Dónde veo...?
+    </h1>
+  </header>
+  <section
+    className="searchbar"
+  >
+    <input
+      context="Search"
+      onChange={[Function]}
+      type="text"
+    />
+    <button
+      className="submit"
+      onClick={[Function]}
+    >
+      GO
+    </button>
+  </section>
 </div>
 `;
