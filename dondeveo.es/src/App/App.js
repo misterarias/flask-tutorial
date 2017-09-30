@@ -5,11 +5,14 @@ import SearchBar from './SearchBar' ;
 import SearchResults from './SearchResults' ;
 
 export default class App extends Component {
+
   render() {
     return (
       <div className="App">
           <SearchBar />
-          <SearchResults />
+          <SearchResults
+            results={[]} handleClick={console.log}
+          />
         </div>
     );
   }

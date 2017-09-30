@@ -1,11 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders correctly when empty 1`] = `
 <div
   className="search-results"
 >
   <ul
     id="results"
   />
+</div>
+`;
+
+exports[`renders correctly with results 1`] = `
+<div
+  className="search-results"
+>
+  <ul
+    id="results"
+  >
+    <li>
+      <div
+        className="result"
+        onClick={[Function]}
+      >
+        <h3>
+          Movie 1
+        </h3>
+        <p>
+          Created in a map()
+        </p>
+      </div>
+    </li>
+    <li>
+      <div
+        className="result"
+        onClick={[Function]}
+      >
+        <h3>
+          Movie 2
+        </h3>
+        <p>
+          Created in a map()
+        </p>
+      </div>
+    </li>
+  </ul>
 </div>
 `;
