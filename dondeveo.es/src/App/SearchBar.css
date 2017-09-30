@@ -1,3 +1,28 @@
-.search-bar {
-  background: #fabada;
+.container {
+  text-align: center;
+  background-color: white;
+  padding: 10px;
+  margin: 60px;
+}
+
+.header {
+  height: 60px;
+  padding: 10px;
+  color: #222;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.searchbar input {
+  width: 150px;
+  height: 40px;
+  padding-left: 5px;
+  margin: 0 5px;
+  font-size: 16px;
+}
+.searchbar button {
+  height: 40px;
+  font-size: 16px;
 }
