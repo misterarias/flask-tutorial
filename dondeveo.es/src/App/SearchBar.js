@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Row, Button, Col, Form, FormGroup, Input } from 'reactstrap';
+
 import './SearchBar.css';
 
 export default class SearchBar extends Component {
@@ -26,27 +28,21 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div className="container">
+      <Row >
+          <Col sm={10}>
+            <Input
+              type="text" name="text" id="searchForm" placeholder="Título de película..."
+            />
+          </Col>
 
-        <header className="header">
-          <h1 className="title">¿Dónde veo...?</h1>
-        </header>
-
-        <section className="searchbar">
-
-          <input
-            type="text"
-            onChange={this.handleChange}
-            context="Search"
-          />
-
-          <button
-            className="submit"
-            onClick={this.handleSubmit}
-          >GO</button>
-
-        </section>
-      </div>
+          <Col sm={2}>
+            <Button
+              block
+              color="primary"
+              onClick={this.handleSubmit}
+            > Search </Button>
+          </Col>
+      </Row>
     )
   }
 }
