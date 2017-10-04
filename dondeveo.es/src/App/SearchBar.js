@@ -44,6 +44,7 @@ export default class SearchBar extends Component {
           <Col sm={10}>
             <Input
               type="text"
+              name="searchTerm"
               onChange={this.handleChange}
               placeholder="Título de película..."
             />

@@ -11,6 +11,17 @@ configure({ adapter: new Adapter() })
 
 import renderer from 'react-test-renderer';
 
+const testMovieList = [
+  {
+    name: "Movie 1",
+    description: "The best movie ever"
+  },
+  {
+    name: "Movie 2",
+    description: "Much better than Movie 1"
+  }
+];
+
 it('renders correctly when empty', () => {
   const tree = renderer.create(
     <SearchResults />
@@ -21,9 +32,9 @@ it('renders correctly when empty', () => {
 
 
 it('renders correctly with results', () => {
-  const results = ['Movie 1', 'Movie 2'];
   const tree = renderer.create(
-    <SearchResults results={results}
+    <SearchResults
+      results={testMovieList}
     />
   ).toJSON();
 
@@ -31,35 +42,39 @@ it('renders correctly with results', () => {
 });
 
 test('SearchResults starts with an empty list', () => {
-  const searchResults = shallow(
+  const searchResults = mount(
     <SearchResults />
   );
 
-  const results = searchResults.find('#results');
-  expect(results.length).toBe(1) ;
-  expect(results.find('li').length).toBe(0) ;
+  const results = searchResults.find('ul').children();
+  expect(results.length).toBe(0) ;
 });
 
 test('SearchResults renders results', () => {
-  const movieList = ['Movie 1', 'Movie 2'];
-  const searchResults = shallow(
-    <SearchResults results={movieList}/>
+
+  const searchResults = mount(
+    <SearchResults results={testMovieList}/>
   );
 
-  const renderedMovieList = searchResults.find('#results').children();
+  const renderedMovieList = searchResults.find('ul').children();
   expect(renderedMovieList.length).toBe(2) ;
 });
 
 test('SearchResults renders clickable links', () => {
-  const movieList = ['Movie 1']
   const mockEvent = sinon.spy();
 
   const searchResults = mount(
-    <SearchResults results={movieList} handleClick={mockEvent}/>
+    <SearchResults
+      results={testMovieList}
+      handleClick={mockEvent}
+    />
   );
 
-  const renderedMovieList = searchResults.find('div.result');
-  renderedMovieList.simulate('click') ;
-  expect(mockEvent.calledOnce).toBeTruthy();
+  searchResults.find('button').first().simulate('click') ;
+  expect(mockEvent.callCount).toBe(1);
   expect(mockEvent.args[0][0]).toBe('Movie 1');
+
+  searchResults.find('button').last().simulate('click') ;
+  expect(mockEvent.callCount).toBe(2);
+  expect(mockEvent.args[1][0]).toBe('Movie 2');
 });

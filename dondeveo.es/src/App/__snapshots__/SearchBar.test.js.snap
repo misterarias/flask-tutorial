@@ -1,32 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  className="container"
->
-  <header
-    className="header"
+<div>
+  <div
+    className="jumbotron"
   >
-    <h1
-      className="title"
+    <div
+      className="container"
     >
-      ¿Dónde veo...?
-    </h1>
-  </header>
-  <section
-    className="searchbar"
+      <h1
+        className="display-3"
+      >
+        ¿Dónde veo.... ?
+      </h1>
+      <p
+        className="lead"
+      >
+        Busca aquí dónde ver la peli que te apetezca
+      </p>
+    </div>
+  </div>
+  <div
+    className="row"
   >
-    <input
-      context="Search"
-      onChange={[Function]}
-      type="text"
-    />
-    <button
-      className="submit"
-      onClick={[Function]}
+    <div
+      className="col col-sm-10"
     >
-      GO
-    </button>
-  </section>
+      <input
+        className="form-control"
+        name="searchTerm"
+        onChange={[Function]}
+        placeholder="Título de película..."
+        type="text"
+      />
+    </div>
+    <div
+      className="col col-sm-2"
+    >
+      <button
+        className="btn btn-primary btn-block"
+        onClick={[Function]}
+        type="button"
+      >
+         Search 
+      </button>
+    </div>
+  </div>
 </div>
 `;

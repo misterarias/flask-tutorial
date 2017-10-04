@@ -20,7 +20,8 @@ class Movie extends Component {
 export default class SearchResults extends Component {
 
   render() {
-    const results = this.props.results.map( (item, key) => {
+    const results = this.props.results || [] ;
+    const movieList = results.map( (item, key) => {
       return (
         <Movie
           key={key}
@@ -39,7 +40,7 @@ export default class SearchResults extends Component {
           { results.length > 0 ?`Mostrando ${results.length} resultados` : '' }
         </p>
         <ListGroup className="search-results">
-          {results}
+          {movieList}
         </ListGroup>
       </Container>
     );

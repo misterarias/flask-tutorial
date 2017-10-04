@@ -2,47 +2,59 @@
 
 exports[`renders correctly when empty 1`] = `
 <div
-  className="search-results"
+  className="container"
 >
+  <hr />
+  <p>
+    
+  </p>
   <ul
-    id="results"
+    className="search-results list-group"
   />
 </div>
 `;
 
 exports[`renders correctly with results 1`] = `
 <div
-  className="search-results"
+  className="container"
 >
+  <hr />
+  <p>
+    Mostrando 2 resultados
+  </p>
   <ul
-    id="results"
+    className="search-results list-group"
   >
-    <li>
-      <div
-        className="result"
-        onClick={[Function]}
+    <button
+      className="list-group-item-action list-group-item"
+      onClick={[Function]}
+    >
+      <h5
+        className="list-group-item-heading"
       >
-        <h3>
-          Movie 1
-        </h3>
-        <p>
-          Created in a map()
-        </p>
-      </div>
-    </li>
-    <li>
-      <div
-        className="result"
-        onClick={[Function]}
+        Movie 1
+      </h5>
+      <p
+        className="list-group-item-text"
       >
-        <h3>
-          Movie 2
-        </h3>
-        <p>
-          Created in a map()
-        </p>
-      </div>
-    </li>
+        The best movie ever
+      </p>
+    </button>
+    <button
+      className="list-group-item-action list-group-item"
+      onClick={[Function]}
+    >
+      <h5
+        className="list-group-item-heading"
+      >
+        Movie 2
+      </h5>
+      <p
+        className="list-group-item-text"
+      >
+        Much better than Movie 1
+      </p>
+    </button>
   </ul>
 </div>
 `;
