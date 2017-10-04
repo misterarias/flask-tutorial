@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { Container, Media, Row, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 
 import './SearchResults.css';
 
@@ -10,8 +10,16 @@ class Movie extends Component {
         tag="button" action={true}
         onClick={() => this.props.handleClick(this.props.name)}
       >
-        <ListGroupItemHeading>{this.props.name}</ListGroupItemHeading>
-        <ListGroupItemText>{this.props.description}</ListGroupItemText>
+        <Row>
+          <Col sm={2}>
+            <Media object data-src={this.props.imageUri} className="img-circle" />
+          </Col>
+          <Col sm={10}>
+            <ListGroupItemHeading>{this.props.name}</ListGroupItemHeading>
+            <ListGroupItemText>{this.props.description}</ListGroupItemText>
+          </Col>
+        </Row>
+
       </ListGroupItem>
     );
   }
@@ -26,7 +34,7 @@ export default class SearchResults extends Component {
         <Movie
           key={key}
           name={item.name}
-          thumbnail={item.image || null}
+          thumbnail={item.imageUri}
           handleClick={this.props.handleClick}
           description={item.description}
         />
