@@ -1,0 +1,9 @@
+.border {
+  background-color: #fefefe;
+  height: 100vh;
+}
+
+.jumbotron {
+  background-color: #f3f5f9;
+  padding-bottom: 2rem;
+}

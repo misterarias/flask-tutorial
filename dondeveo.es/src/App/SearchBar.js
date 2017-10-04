@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Button, Col, Form, FormGroup, Input } from 'reactstrap';
+import { Input, Button, Container, Col, Row, Jumbotron } from 'reactstrap';
 
 import './SearchBar.css';
 
@@ -28,10 +28,24 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <Row >
+      <div>
+        <Jumbotron>
+          <Container>
+            <h1 className="display-3">¿Dónde veo.... ?</h1>
+
+            <p className="lead">
+              Busca aquí dónde ver la peli que te apetezca
+            </p>
+
+          </Container>
+        </Jumbotron>
+
+        <Row >
           <Col sm={10}>
             <Input
-              type="text" name="text" id="searchForm" placeholder="Título de película..."
+              type="text"
+              onChange={this.handleChange}
+              placeholder="Título de película..."
             />
           </Col>
 
@@ -42,7 +56,8 @@ export default class SearchBar extends Component {
               onClick={this.handleSubmit}
             > Search </Button>
           </Col>
-      </Row>
+        </Row>
+      </div>
     )
   }
 }

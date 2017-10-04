@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, Jumbotron } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import './App.css';
 
 import SearchBar from './SearchBar' ;
@@ -7,33 +7,53 @@ import SearchResults from './SearchResults' ;
 
 export default class App extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      results: []
+    }
+  }
+
+  doSearch(searchTerm) {
+    return [
+      {
+        name: "Movie 1",
+        description: "The best movie ever"
+      },
+      {
+        name: "Movie 2",
+        description: "Much better than Movie 1"
+      }
+    ]
+  }
+
+  handleSubmit(searchTerm) {
+    const searchResults = this.doSearch(searchTerm);
+    this.setState({
+      results: searchResults
+    });
+  }
+
   render() {
     return (
       <Row>
-        <Col xs="2"></Col>
-        <Col xs="8">
+        <Col className="border" xs="2"></Col>
 
-          <Jumbotron fluid>
-            <Container fluid>
-              <h1 className="display-3">¿Dónde veo.... ?</h1>
-              <p className="lead">
-                Busca aquí dónde ver la peli que te apeteza
-              </p>
-
-              <hr className="my-2" />
-
-              <SearchBar />
-
-            </Container>
-          </Jumbotron>
-
-
-          <SearchResults
-            results={[]} handleClick={console.log}
+        <Col xs={8}>
+          <SearchBar
+            onSubmit={(searchTerm) => this.handleSubmit(searchTerm)}
           />
-        </Col>
-        <Col xs="2"></Col>
-      </Row>
+
+        <SearchResults
+          results={this.state.results}
+          handleClick={console.log}
+        />
+      </Col>
+
+      <Col className="border" xs={2}></Col>
+
+    </Row>
     );
   }
 }

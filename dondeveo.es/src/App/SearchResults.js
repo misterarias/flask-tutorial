@@ -1,44 +1,47 @@
 import React, { Component } from 'react';
+import { Container, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+
 import './SearchResults.css';
 
 class Movie extends Component {
   render() {
-  return(
-    <div className="result" onClick={() => this.props.handleClick(this.props.name)}>
-      <h3>{this.props.name}</h3>
-      <p>{this.props.description}</p>
-    </div>
-  );
+    return(
+      <ListGroupItem
+        tag="button" action={true}
+        onClick={() => this.props.handleClick(this.props.name)}
+      >
+        <ListGroupItemHeading>{this.props.name}</ListGroupItemHeading>
+        <ListGroupItemText>{this.props.description}</ListGroupItemText>
+      </ListGroupItem>
+    );
   }
 }
 
 export default class SearchResults extends Component {
 
-  constructor(props) {
-    super();
-
-    this.state = {
-      results: props.results || []
-    };
-  }
-
   render() {
-    const results = this.state.results.map( (item, key) => {
+    const results = this.props.results.map( (item, key) => {
       return (
-        <li key={key}>
-          <Movie
-            name={item}
-            handleClick={this.props.handleClick}
-            description="Created in a map()"
-          />
-        </li>
+        <Movie
+          key={key}
+          name={item.name}
+          thumbnail={item.image || null}
+          handleClick={this.props.handleClick}
+          description={item.description}
+        />
       );
     });
 
     return (
-      <div className="search-results">
-        <ul id="results">{results}</ul>
-      </div>
+      <Container>
+        <hr />
+        <p>
+          { results.length > 0 ?`Mostrando ${results.length} resultados` : '' }
+        </p>
+        <ListGroup className="search-results">
+          {results}
+        </ListGroup>
+      </Container>
     );
   }
 }
