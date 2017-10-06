@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'reactstrap';
+
 import './App.css';
 
 import SearchBar from './SearchBar' ;
 import SearchResults from './SearchResults' ;
+import Search from './Api/Search' ;
 
 export default class App extends Component {
 
@@ -16,16 +18,16 @@ export default class App extends Component {
   }
 
   doSearch(searchTerm) {
-    return [
-      {
-        name: "Movie 1",
-        description: "The best movie ever"
-      },
-      {
-        name: "Movie 2",
-        description: "Much better than Movie 1"
+    const movieSet =  Search.results();
+    if (movieSet.total_results === 0) return []
+    return movieSet.results.map( (item, key) => {
+      return {
+        'name': item.original_title,
+        'description': item.overview,
+        'thumbnail': item.poster_path,
+        'year': item.release_date
       }
-    ]
+    });
   }
 
   handleSubmit(searchTerm) {

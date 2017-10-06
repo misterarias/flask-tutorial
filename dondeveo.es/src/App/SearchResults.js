@@ -5,6 +5,12 @@ import './SearchResults.css';
 
 class Movie extends Component {
   render() {
+    const movie = this.props.movie;
+    let year = this.props.movie.year ;
+    if (year.length > 4) {
+      year = year.substr(0, 4);
+    }
+
     return(
       <ListGroupItem
         tag="button" action={true}
@@ -12,11 +18,11 @@ class Movie extends Component {
       >
         <Row>
           <Col sm={2}>
-            <Media object data-src={this.props.imageUri} className="img-circle" />
+            <Media object data-src={movie.thumbnail} className="img-circle" />
           </Col>
           <Col sm={10}>
-            <ListGroupItemHeading>{this.props.name}</ListGroupItemHeading>
-            <ListGroupItemText>{this.props.description}</ListGroupItemText>
+            <ListGroupItemHeading>{movie.name} <i className="small">({year})</i></ListGroupItemHeading>
+            <ListGroupItemText>{movie.description}</ListGroupItemText>
           </Col>
         </Row>
 
@@ -32,9 +38,7 @@ export default class SearchResults extends Component {
     const movieList = results.map( (item, key) => {
       return (
         <Movie
-          key={key}
-          name={item.name}
-          thumbnail={item.imageUri}
+          movie={item}
           handleClick={this.props.handleClick}
           description={item.description}
         />
