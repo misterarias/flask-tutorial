@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 
 import './App.css';
 
+import SearchTitle from './SearchTitle' ;
 import SearchBar from './SearchBar' ;
 import SearchResults from './SearchResults' ;
 import Search from './Api/Search' ;
@@ -39,23 +40,28 @@ export default class App extends Component {
 
   render() {
     return (
-      <Row>
-        <Col className="border" xs="2"></Col>
+      <Container fluid={true}>
+        <Row>
+          <Col md={2} sm={1}></Col>
 
-        <Col xs={8}>
-          <SearchBar
-            onSubmit={(searchTerm) => this.handleSubmit(searchTerm)}
-          />
+          <Col md={8} sm={10}>
 
-        <SearchResults
-          results={this.state.results}
-          handleClick={console.log}
-        />
-      </Col>
+            <SearchTitle />
 
-      <Col className="border" xs={2}></Col>
+            <SearchBar
+              handleSubmit={(searchTerm) => this.handleSubmit(searchTerm)} />
 
-    </Row>
+            <SearchResults
+              results={this.state.results}
+              handleClick={console.log}
+            />
+
+          </Col>
+
+          <Col md={2} sm={1}></Col>
+
+        </Row>
+      </Container>
     );
   }
 }

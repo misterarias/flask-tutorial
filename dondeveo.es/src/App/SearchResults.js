@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Media, Row, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { Media, Row, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import ApiInfo from './Api/ApiUtils' ;
 import './SearchResults.css';
 
@@ -53,15 +53,19 @@ export default class SearchResults extends Component {
     });
 
     return (
-      <Container>
-        <hr />
-        <p>
-          { results.length > 0 ?`Mostrando ${results.length} resultados` : '' }
-        </p>
-        <ListGroup className="search-results">
-          {movieList}
-        </ListGroup>
-      </Container>
+      <Row>
+        <Col xs={12}>
+
+          <p className="lead">
+            { results.length > 0 ?`Mostrando ${results.length} resultados` : '' }
+          </p>
+
+          <ListGroup className="search-results">
+            {movieList}
+          </ListGroup>
+
+        </Col>
+      </Row>
     );
   }
 }

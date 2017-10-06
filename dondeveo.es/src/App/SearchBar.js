@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Container, Col, Row, Jumbotron } from 'reactstrap';
-
-import './SearchBar.css';
+import { Input, Button, Col, Row } from 'reactstrap';
 
 export default class SearchBar extends Component {
 
@@ -23,42 +21,37 @@ export default class SearchBar extends Component {
   }
 
   handleSubmit(ev) {
-    this.props.onSubmit(this.state.query);
+    this.props.handleSubmit(this.state.query);
   }
 
   render() {
+
+    const colStyle = {
+      marginBottom: '1rem'
+    }
+
     return (
-      <div>
-        <Jumbotron>
-          <Container>
-            <h1 className="display-3">¿Dónde veo.... ?</h1>
+      <Row>
 
-            <p className="lead">
-              Busca aquí dónde ver la peli que te apetezca
-            </p>
+        <Col sm={10} style={colStyle}>
 
-          </Container>
-        </Jumbotron>
+          <Input
+            type="text"
+            name="searchTerm"
+            onChange={this.handleChange}
+            placeholder="Título de película..."
+          />
+        </Col>
 
-        <Row >
-          <Col sm={10}>
-            <Input
-              type="text"
-              name="searchTerm"
-              onChange={this.handleChange}
-              placeholder="Título de película..."
-            />
-          </Col>
+        <Col sm={2}>
+          <Button
+            block
+            color="primary"
+            onClick={this.handleSubmit}
+          > Search </Button>
+        </Col>
 
-          <Col sm={2}>
-            <Button
-              block
-              color="primary"
-              onClick={this.handleSubmit}
-            > Search </Button>
-          </Col>
-        </Row>
-      </div>
+      </Row>
     )
   }
 }

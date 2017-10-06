@@ -1,9 +1,13 @@
+body {
+  font-family: Roboto, helvetica, arial, sans-serif;
+}
+
 .border {
-  background-color: #fefefe;
   height: 100vh;
+  border: 0 ;
 }
 
 .jumbotron {
-  background-color: #f3f5f9;
-  padding-bottom: 2rem;
+  background: #fdffff;
+  padding-bottom: 1rem;
 }
