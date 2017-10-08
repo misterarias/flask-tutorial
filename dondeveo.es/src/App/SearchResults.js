@@ -22,11 +22,11 @@ class Movie extends Component {
       <ListGroupItem
         action={true}
         className="listItem"
-        onClick={() => this.props.handleClick(this.props.name)}
+        onClick={() => this.props.handleClick(movie.name)}
       >
         <Row>
           <Col sm={2}>
-            <Media object data-src={thumbnail} className="img-circle" />
+            <Media object src={thumbnail} className="img-circle" />
           </Col>
           <Col sm={10}>
             <ListGroupItemHeading>{movie.name} <i className="small">({year})</i></ListGroupItemHeading>
@@ -46,6 +46,7 @@ export default class SearchResults extends Component {
     const movieList = results.map( (item, key) => {
       return (
         <Movie
+          key={key}
           movie={item}
           handleClick={this.props.handleClick}
         />
@@ -54,7 +55,7 @@ export default class SearchResults extends Component {
 
     return (
       <Row>
-        <Col xs={12}>
+        <Col sm={12}>
 
           <p className="lead">
             { results.length > 0 ?`Mostrando ${results.length} resultados` : '' }

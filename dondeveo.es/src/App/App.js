@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import './App.css';
 
@@ -40,28 +40,23 @@ export default class App extends Component {
 
   render() {
     return (
-      <Container fluid={true}>
-        <Row>
-          <Col md={2} sm={1}></Col>
+      <Container fluid={true} style={ {
+        width: '80%',
+        margin: '0 10%'
+      }}>
 
-          <Col md={8} sm={10}>
+      <SearchTitle />
 
-            <SearchTitle />
+      <SearchBar
+        handleSubmit={(searchTerm) => this.handleSubmit(searchTerm)} />
 
-            <SearchBar
-              handleSubmit={(searchTerm) => this.handleSubmit(searchTerm)} />
+      <SearchResults
+        results={this.state.results}
+        handleClick={console.log}
+      />
 
-            <SearchResults
-              results={this.state.results}
-              handleClick={console.log}
-            />
 
-          </Col>
-
-          <Col md={2} sm={1}></Col>
-
-        </Row>
-      </Container>
+  </Container>
     );
   }
 }

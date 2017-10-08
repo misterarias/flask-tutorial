@@ -26,15 +26,14 @@ export default class SearchBar extends Component {
 
   render() {
 
-    const colStyle = {
+    const pushBottomStyle = {
       marginBottom: '1rem'
     }
 
     return (
-      <Row>
+      <Row style={pushBottomStyle}>
 
-        <Col sm={10} style={colStyle}>
-
+        <Col sm={10} >
           <Input
             type="text"
             name="searchTerm"
@@ -45,7 +44,6 @@ export default class SearchBar extends Component {
 
         <Col sm={2}>
           <Button
-            block
             color="primary"
             onClick={this.handleSubmit}
           > Search </Button>

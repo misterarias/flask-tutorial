@@ -14,11 +14,14 @@ import renderer from 'react-test-renderer';
 const testMovieList = [
   {
     name: "Movie 1",
-    description: "The best movie ever"
+    description: "The best movie ever",
+    year: '2010-01-01'
   },
   {
     name: "Movie 2",
-    description: "Much better than Movie 1"
+    description: "Much better than Movie 1",
+    year: '2017',
+    thumbnail: 'real_path.jpg'
   }
 ];
 
@@ -70,11 +73,12 @@ test('SearchResults renders clickable links', () => {
     />
   );
 
-  searchResults.find('button').first().simulate('click') ;
+  const movieList = searchResults.find('li') ;
+  movieList.first().simulate('click') ;
   expect(mockEvent.callCount).toBe(1);
   expect(mockEvent.args[0][0]).toBe('Movie 1');
 
-  searchResults.find('button').last().simulate('click') ;
+  movieList.last().simulate('click') ;
   expect(mockEvent.callCount).toBe(2);
   expect(mockEvent.args[1][0]).toBe('Movie 2');
 });

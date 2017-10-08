@@ -25,7 +25,6 @@ test('searchBar starts with no text', () => {
   );
 
   const searchBarText = searchBar.find('input');
-  console.log(searchBarText);
   expect(searchBarText.text()).toBe("") ;
 });
 
@@ -33,7 +32,7 @@ test('searchBar triggers an event when submit is clicked', () => {
 
   const mockEvent = sinon.spy()
   const searchBar = mount(
-    <SearchBar onSubmit={mockEvent} />
+    <SearchBar handleSubmit={mockEvent} />
   );
 
   searchBar.setState({ query: 'Test me' });

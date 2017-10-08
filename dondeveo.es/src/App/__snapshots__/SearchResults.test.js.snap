@@ -2,91 +2,117 @@
 
 exports[`renders correctly when empty 1`] = `
 <div
-  className="container"
+  className="row"
 >
-  <hr />
-  <p>
-    
-  </p>
-  <ul
-    className="search-results list-group"
-  />
+  <div
+    className="col col-sm-12"
+  >
+    <p
+      className="lead"
+    >
+      
+    </p>
+    <ul
+      className="search-results list-group"
+    />
+  </div>
 </div>
 `;
 
 exports[`renders correctly with results 1`] = `
 <div
-  className="container"
+  className="row"
 >
-  <hr />
-  <p>
-    Mostrando 2 resultados
-  </p>
-  <ul
-    className="search-results list-group"
+  <div
+    className="col col-sm-12"
   >
-    <button
-      className="list-group-item-action list-group-item"
-      onClick={[Function]}
+    <p
+      className="lead"
     >
-      <div
-        className="row"
+      Mostrando 2 resultados
+    </p>
+    <ul
+      className="search-results list-group"
+    >
+      <li
+        className="listItem list-group-item-action list-group-item"
+        onClick={[Function]}
       >
         <div
-          className="col col-sm-2"
+          className="row"
         >
-          <img
-            className="img-circle media-object"
-            data-src={undefined}
-          />
-        </div>
-        <div
-          className="col col-sm-10"
-        >
-          <h5
-            className="list-group-item-heading"
+          <div
+            className="col col-sm-2"
           >
-            Movie 1
-          </h5>
-          <p
-            className="list-group-item-text"
+            <img
+              className="img-circle media-object"
+              src={undefined}
+            />
+          </div>
+          <div
+            className="col col-sm-10"
           >
-            The best movie ever
-          </p>
+            <h5
+              className="list-group-item-heading"
+            >
+              Movie 1
+               
+              <i
+                className="small"
+              >
+                (
+                2010
+                )
+              </i>
+            </h5>
+            <p
+              className="list-group-item-text"
+            >
+              The best movie ever
+            </p>
+          </div>
         </div>
-      </div>
-    </button>
-    <button
-      className="list-group-item-action list-group-item"
-      onClick={[Function]}
-    >
-      <div
-        className="row"
+      </li>
+      <li
+        className="listItem list-group-item-action list-group-item"
+        onClick={[Function]}
       >
         <div
-          className="col col-sm-2"
+          className="row"
         >
-          <img
-            className="img-circle media-object"
-            data-src={undefined}
-          />
-        </div>
-        <div
-          className="col col-sm-10"
-        >
-          <h5
-            className="list-group-item-heading"
+          <div
+            className="col col-sm-2"
           >
-            Movie 2
-          </h5>
-          <p
-            className="list-group-item-text"
+            <img
+              className="img-circle media-object"
+              src="http://image.tmdb.org/t/p/w90/real_path.jpg"
+            />
+          </div>
+          <div
+            className="col col-sm-10"
           >
-            Much better than Movie 1
-          </p>
+            <h5
+              className="list-group-item-heading"
+            >
+              Movie 2
+               
+              <i
+                className="small"
+              >
+                (
+                2017
+                )
+              </i>
+            </h5>
+            <p
+              className="list-group-item-text"
+            >
+              Much better than Movie 1
+            </p>
+          </div>
         </div>
-      </div>
-    </button>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>
 `;
