@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Media, Row, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
-import ApiInfo from './Api/ApiUtils' ;
+import ApiInfo from '../Api/ApiUtils' ;
 import './SearchResults.css';
 
 

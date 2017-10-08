@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './App';
-import SearchResults from './SearchResults';
-import SearchBar from './SearchBar' ;
+import SearchResults from './SearchResults/SearchResults';
+import SearchBar from './SearchBar/SearchBar' ;
 
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="jumbotron"
+  >
+    <h1
+      className="display-3"
+    >
+      dondeveo.es
+    </h1>
+    <p
+      class="lead opacity-75"
+    >
+      Busca aquí donde puedes ver la peli que te apetezca
+    </p>
+  </div>
+</div>
+`;

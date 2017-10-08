@@ -3,9 +3,9 @@ import { Container } from 'reactstrap';
 
 import './App.css';
 
-import SearchTitle from './SearchTitle' ;
-import SearchBar from './SearchBar' ;
-import SearchResults from './SearchResults' ;
+import SearchTitle from './SearchTitle/SearchTitle' ;
+import SearchBar from './SearchBar/SearchBar' ;
+import SearchResults from './SearchResults/SearchResults' ;
 import Search from './Api/Search' ;
 
 export default class App extends Component {
