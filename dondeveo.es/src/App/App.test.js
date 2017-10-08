@@ -1,26 +1,57 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './App';
-import SearchResults from './SearchResults/SearchResults';
-import SearchBar from './SearchBar/SearchBar' ;
 
-import {configure, shallow} from 'enzyme';
+import MoviePage from './MoviePage/MoviePage' ;
+import SearchBar from './SearchBar/SearchBar' ;
+import SearchTitle from './SearchTitle/SearchTitle' ;
+
+import { MemoryRouter} from 'react-router-dom'
+
+import { mount, configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() })
 
-it('renders without crashing', () => {
+it('renders default path without crashing', () => {
   const tree = renderer.create(
-    <App />
+    <MemoryRouter >
+      <App />
+    </MemoryRouter>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-test('App has the expected elements', () => {
-  const app = shallow(
-    <App />
+it('renders "/movies"  path without crashing', () => {
+  const tree = renderer.create(
+    <MemoryRouter initialEntries={[ '/movie/Rambo' ]}  >
+      <App />
+    </MemoryRouter>
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+test('App has the expected elements when on the default path', () => {
+  const app = mount(
+    <MemoryRouter >
+      <App />
+    </MemoryRouter>
   );
 
+  expect(app.find(SearchTitle).length).toBe(1);
   expect(app.find(SearchBar).length).toBe(1);
-  expect(app.find(SearchResults).length).toBe(1);
+  expect(app.find(MoviePage).length).toBe(0);
+});
+
+test('App has the expected elements when on the "/movies" path', () => {
+  const app = mount(
+    <MemoryRouter initialEntries={[ '/movie/Rambo' ]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  expect(app.find(SearchTitle).length).toBe(1);
+  expect(app.find(SearchBar).length).toBe(0);
+  expect(app.find(MoviePage).length).toBe(1);
 });

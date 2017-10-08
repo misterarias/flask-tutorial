@@ -1,3 +1,8 @@
 .opacity-75 {
   opacity:0.75;
 }
+
+.jumbotron {
+  background: #fdffff;
+  padding-bottom: 1rem;
+}

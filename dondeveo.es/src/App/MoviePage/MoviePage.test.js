@@ -1,12 +1,12 @@
 'use strict'
 
 import React from 'react';
-import SearchTitle from './SearchTitle.js';
+import MoviePage from './MoviePage';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <SearchTitle />
+    <MoviePage />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
