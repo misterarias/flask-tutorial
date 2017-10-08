@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
       dondeveo.es
     </h1>
     <p
-      class="lead opacity-75"
+      className="lead opacity-75"
     >
       Busca aquí donde puedes ver la peli que te apetezca
     </p>

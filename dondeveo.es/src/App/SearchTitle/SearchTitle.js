@@ -8,7 +8,7 @@ const SearchTitle = (props) => {
       <Jumbotron>
         <h1 className="display-3">dondeveo.es</h1>
 
-        <p class="lead opacity-75">
+        <p className="lead opacity-75">
           Busca aquí donde puedes ver la peli que te apetezca
         </p>
 

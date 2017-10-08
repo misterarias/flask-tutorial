@@ -3,6 +3,8 @@ import { Media, Row, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGr
 import ApiInfo from '../Api/ApiUtils' ;
 import './SearchResults.css';
 
+import { Link } from 'react-router-dom' ;
+
 
 class Movie extends Component {
   render() {
@@ -19,10 +21,10 @@ class Movie extends Component {
     }
 
     return(
+      <Link to={`/movie/${movie.name}`}>
       <ListGroupItem
         action={true}
         className="listItem"
-        onClick={() => this.props.handleClick(movie.name)}
       >
         <Row>
           <Col sm={2}>
@@ -35,6 +37,7 @@ class Movie extends Component {
         </Row>
 
       </ListGroupItem>
+    </Link>
     );
   }
 }
@@ -48,7 +51,6 @@ export default class SearchResults extends Component {
         <Movie
           key={key}
           movie={item}
-          handleClick={this.props.handleClick}
         />
       );
     });
